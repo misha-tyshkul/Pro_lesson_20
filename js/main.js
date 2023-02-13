@@ -6,8 +6,8 @@ const showPokemon = () => {
     .then(createList);
 };
 
-const createList = (arr) => {
-  const namePokemon = arr.results;
+const createList = (obj) => {
+  const namePokemon = obj.results;
   namePokemon.forEach((el) => {
     const divTitle = document.createElement("div");
     divTitle.classList.add("popup-link");
@@ -33,17 +33,21 @@ const showPokemonInfo = (name) => {
     .then(createInfo);
 };
 
-const infoWeight = document.querySelector(".weight");
-const infoHeight = document.querySelector(".height");
-const imgPokemon = document.querySelector(".image-pokemon");
-
-const createInfo = (arr) => {
-  const weightPokemon = arr.weight;
+const createInfo = (obj) => {
+  const infoWeight = document.querySelector(".weight");
+  const infoHeight = document.querySelector(".height");
+  const imgPokemon = document.querySelector(".image-pokemon");
+  const weightPokemon = obj.weight;
   infoWeight.innerText = `Weight: ${weightPokemon}`;
 
-  const heightPokemon = arr.height;
+  const heightPokemon = obj.height;
   infoHeight.innerText = `Height: ${heightPokemon}`;
 
-  const imgSrc = arr.sprites.front_default;
+  const imgSrc = obj.sprites.front_default;
   imgPokemon.src = imgSrc;
 };
+
+const btnClose = document.querySelector(".popup_close");
+btnClose.addEventListener("click", (event) => {
+  popup.style.display = "none";
+});
